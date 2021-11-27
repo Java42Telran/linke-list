@@ -20,7 +20,7 @@ public class LinkedList<T> extends AbstractList<T> {
 
 	private Node<T> head; // reference to the first element
 	private Node<T> tail; // reference to the last element
-	private class LinkedListIterator implements Iterator<T> {
+	private class LinkedListIterator extends AbstractIterator<T> {
 		Node<T> current = head;
 		@Override
 		public boolean hasNext() {
@@ -29,16 +29,16 @@ public class LinkedList<T> extends AbstractList<T> {
 		}
 
 		@Override
-		public T next() {
+		protected T nextObject() {
 			//return current T object
 			T res = current.obj;
-			//FIXME check res and throwing exception
+			
 			//moves to a next current
 			current = current.next;
 			return res;
 		}
 		@Override
-		public void remove() {
+		protected void removeObject() {
 			 
 			//removes element that has been returned by the last next call
 			//that is previous of the current. But if current is null, then tail
